@@ -40,7 +40,8 @@ pub struct Make<'info> {
     )]
     pub maker_ata_a: InterfaceAccount<'info, TokenAccount>,
     #[account(
-     mut,
+     init,
+     payer=maker,
      associated_token::mint = mint_a,
             associated_token::authority = escrow,
             associated_token::token_program = token_program,
@@ -79,8 +80,11 @@ impl<'info> Make<'info> {
     }
 }
 
-pub fn handler(ctx: Context<Make>, seed: u64, amount: u64, bump: u8) -> Result<()> {
-    ctx.accounts.populate_escrow(seed, amount, bump)?;
+pub fn handler(ctx: Context<Make>, seed: u64, amount: u64, recieve: u64) -> Result<()> {
+    require_gt!(amount, 0);
+    require_gt!(recieve, 0);
+    ctx.accounts
+        .populate_escrow(seed, recieve, ctx.bumps.escrow)?;
     ctx.accounts.deposit_token(amount)?;
     Ok(())
 }
