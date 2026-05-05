@@ -24,7 +24,7 @@ name = "test_make_and_take"
 path="tests/test_make_and_take.rs"
 
 [dependencies]
-anchor-lang = "1.0.0"
+anchor-lang = {version="1.0.0",features=["init-if-needed"]}
 anchor-spl = "1.0.1"
 
 [dev-dependencies]

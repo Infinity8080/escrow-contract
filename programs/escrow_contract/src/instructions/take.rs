@@ -29,7 +29,7 @@ pub struct Take<'info> {
     pub mint_b: Box<InterfaceAccount<'info, Mint>>,
 
     #[account(
-        init,
+        init_if_needed,
         payer=taker,
         associated_token::mint = mint_a,
         associated_token::authority= taker,
@@ -38,8 +38,7 @@ pub struct Take<'info> {
     pub taker_ata_a: Box<InterfaceAccount<'info, TokenAccount>>,
 
     #[account(
-        init,
-        payer=taker,
+        mut,
         associated_token::mint = mint_b,
         associated_token::authority= taker,
         associated_token::token_program=token_program
@@ -47,7 +46,7 @@ pub struct Take<'info> {
     pub taker_ata_b: Box<InterfaceAccount<'info, TokenAccount>>,
 
     #[account(
-        init,
+        init_if_needed,
         payer=taker,
         associated_token::mint = mint_b,
         associated_token::authority= maker,
@@ -55,13 +54,13 @@ pub struct Take<'info> {
     )]
     pub maker_ata_b: Box<InterfaceAccount<'info, TokenAccount>>,
 
-
     #[account(
+        mut,
         associated_token::mint = mint_a,
         associated_token::authority= escrow,
         associated_token::token_program=token_program
     )]
-    pub vault:Box< InterfaceAccount<'info, TokenAccount>>,
+    pub vault: Box<InterfaceAccount<'info, TokenAccount>>,
 
     pub system_program: Program<'info, System>,
     pub token_program: Interface<'info, TokenInterface>,
