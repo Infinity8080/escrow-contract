@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-escrow_contract = "HNTCQ1LqJAswxZUkTY5hdfw99nNoen6VERK9vxvb5t4g"
+escrow_contract = "BrNJgohZjuj8Wru2fRhFwhccvEqjkqciRrAt4P1f5heW"
 
 [provider]
 cluster = "localnet"

@@ -1,5 +1,5 @@
 [package]
-name = "escrow-contract"
+name = "escrow_contract"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
@@ -14,11 +14,14 @@ cpi = ["no-entrypoint"]
 no-entrypoint = []
 no-idl = []
 no-log-ix-name = []
-idl-build = ["anchor-lang/idl-build"]
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
 anchor-debug = []
 custom-heap = []
 custom-panic = []
 
+[[test]]
+name = "test_make_and_take"
+path="tests/test_make_and_take.rs"
 
 [dependencies]
 anchor-lang = "1.0.0"
@@ -30,6 +33,8 @@ solana-message = "3.0.1"
 solana-transaction = "3.0.2"
 solana-signer = "3.0.0"
 solana-keypair = "3.0.1"
+anchor-litesvm = "0.4.0"
+litesvm-utils = "0.4.0"
 
 
 [lints.rust]
